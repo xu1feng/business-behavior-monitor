@@ -17,9 +17,16 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
+    <insert id="insert" parameterType="edu.xyf.monitor.infrastructure.po.MonitorData">
+        insert into monitor_data(monitor_id, monitor_name, monitor_node_id, system_name, clazz_name, method_name,
+                                 attribute_name, attribute_field, attribute_value, create_time, update_time)
+        values(#{monitorId},#{monitorName},#{monitorNodeId},#{systemName},#{clazzName},#{methodName},
+               #{attributeName},#{attributeField},#{attributeValue},now(),now())
+    </insert>
+
     <select id="queryMonitorDataList" parameterType="edu.xyf.monitor.infrastructure.po.MonitorData" resultMap="dataMap">
         select monitor_id, monitor_name, monitor_node_id, system_name, clazz_name, method_name,
-               attribute_name, attribute_field, attribute_value
+        attribute_name, attribute_field, attribute_value
         from monitor_data
         <where>
             <if test="monitorId!=null">
