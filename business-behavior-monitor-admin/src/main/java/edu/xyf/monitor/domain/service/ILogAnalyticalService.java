@@ -1,5 +1,6 @@
 package edu.xyf.monitor.domain.service;
 
+import edu.xyf.monitor.domain.model.entity.MonitorDataEntity;
 import edu.xyf.monitor.domain.model.entity.MonitorDataMapEntity;
 import edu.xyf.monitor.domain.model.valobj.MonitorTreeConfigVO;
 import ognl.OgnlException;
@@ -19,5 +20,7 @@ public interface ILogAnalyticalService {
     List<MonitorDataMapEntity> queryMonitorDataMapEntityList();
 
     MonitorTreeConfigVO queryMonitorFlowData(String monitorId);
+
+    List<MonitorDataEntity> queryMonitorDataEntityList(MonitorDataEntity monitorDataEntity);
 
 }
