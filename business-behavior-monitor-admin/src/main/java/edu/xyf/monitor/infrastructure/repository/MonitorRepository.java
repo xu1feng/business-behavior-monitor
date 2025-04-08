@@ -1,10 +1,12 @@
 package edu.xyf.monitor.infrastructure.repository;
 
 import edu.xyf.monitor.domain.model.entity.MonitorDataEntity;
+import edu.xyf.monitor.domain.model.entity.MonitorDataMapEntity;
 import edu.xyf.monitor.domain.model.valobj.GatherNodeExpressionVO;
 import edu.xyf.monitor.domain.repository.IMonitorRepository;
 import edu.xyf.monitor.infrastructure.dao.*;
 import edu.xyf.monitor.infrastructure.po.MonitorData;
+import edu.xyf.monitor.infrastructure.po.MonitorDataMap;
 import edu.xyf.monitor.infrastructure.po.MonitorDataMapNode;
 import edu.xyf.monitor.infrastructure.po.MonitorDataMapNodeField;
 import edu.xyf.monitor.infrastructure.redis.IRedisService;
@@ -101,6 +103,19 @@ public class MonitorRepository implements IMonitorRepository {
 
         String cacheKey = Constants.RedisKey.monitor_node_data_count_key + monitorDataEntity.getMonitorId() + Constants.UNDERLINE + monitorDataEntity.getMonitorNodeId();
         redisService.incr(cacheKey);
+    }
+
+    @Override
+    public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
+        List<MonitorDataMap> monitorDataList = monitorDataMapDao.queryMonitorDataMapEntityList();
+        List<MonitorDataMapEntity> monitorDataMapEntities = new ArrayList<>();
+        for (MonitorDataMap monitorDataMap : monitorDataList) {
+            monitorDataMapEntities.add(MonitorDataMapEntity.builder()
+                    .monitorId(monitorDataMap.getMonitorId())
+                    .monitorName(monitorDataMap.getMonitorName())
+                    .build());
+        }
+        return monitorDataMapEntities;
     }
 
 }

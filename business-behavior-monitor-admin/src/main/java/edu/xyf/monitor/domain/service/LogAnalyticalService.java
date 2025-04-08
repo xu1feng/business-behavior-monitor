@@ -3,6 +3,7 @@ package edu.xyf.monitor.domain.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import edu.xyf.monitor.domain.model.entity.MonitorDataEntity;
+import edu.xyf.monitor.domain.model.entity.MonitorDataMapEntity;
 import edu.xyf.monitor.domain.model.valobj.GatherNodeExpressionVO;
 import edu.xyf.monitor.domain.repository.IMonitorRepository;
 import edu.xyf.monitor.types.Constants;
@@ -12,6 +13,7 @@ import ognl.OgnlException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -73,6 +75,11 @@ public class LogAnalyticalService implements ILogAnalyticalService {
                 repository.saveMonitorData(monitorDataEntity);
             }
         }
+    }
+
+    @Override
+    public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
+        return repository.queryMonitorDataMapEntityList();
     }
 
 }
