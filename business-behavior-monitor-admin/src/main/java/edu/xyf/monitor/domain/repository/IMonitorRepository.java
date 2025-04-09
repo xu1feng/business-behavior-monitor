@@ -2,6 +2,7 @@ package edu.xyf.monitor.domain.repository;
 
 import edu.xyf.monitor.domain.model.entity.MonitorDataEntity;
 import edu.xyf.monitor.domain.model.entity.MonitorDataMapEntity;
+import edu.xyf.monitor.domain.model.entity.MonitorFlowDesignerEntity;
 import edu.xyf.monitor.domain.model.valobj.GatherNodeExpressionVO;
 import edu.xyf.monitor.domain.model.valobj.MonitorTreeConfigVO;
 
@@ -20,5 +21,7 @@ public interface IMonitorRepository {
     MonitorTreeConfigVO queryMonitorFlowData(String monitorId);
 
     List<MonitorDataEntity> queryMonitorDataEntityList(MonitorDataEntity monitorDataEntity);
+
+    void updateMonitorFlowDesigner(MonitorFlowDesignerEntity monitorFlowDesignerEntity);
 
 }
